@@ -1,15 +1,12 @@
-
-import './App.css'
-import Qrgenerator from './Components/QRGenerator/QRgenerator'
+import "./App.css";
+import QRGenerator from "./Components/QRGenerator/Qrgenerator";
 
 function App() {
-
-
   return (
-    <>
-      <Qrgenerator/>
-    </>
-  )
+    <div className="App">
+      <QRGenerator />
+    </div>
+  );
 }
 
-export default App
+export default App;

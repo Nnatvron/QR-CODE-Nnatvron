@@ -1,56 +1,221 @@
+import {
+  Sparkles,
+  QrCode,
+} from "lucide-react";
 
-import React, { useState,useEffect } from 'react'
-import QrCSS from '../QRGenerator/Qrgenerator.module.css'
+import QRSidebar from "./QRSidebar";
+import QRPreview from "./QRPreview";
+import QRInput from "./QRInput";
+import QRSettings from "./QRSettings";
+import useQRCode from "./hooks/useQRCode";
 
-import QRCode from 'qrcode'
-function Qrgenerator() {
-const[Text, setText]=useState("");
-const[qrData,setqrData]=useState("");
+import QrCSS from "./Qrgenerator.module.css";
 
-    useEffect (()=>{
-        const GenerateQRCode= async ()=>{
-            try{
-                const dataURL=await QRCode.toDataURL(Text);
-                setqrData(dataURL);
-            }
-            catch(e)
-            {
-                console.error("Error Generating QR Code");
-            }
-        }
-        Text && GenerateQRCode();
-    },[Text])
+function QRGenerator() {
 
-    return (
-        <>
-            <div className={QrCSS.container}>
-            <div className={QrCSS.inputWrapper}>
-                <h1><i className="ri-qr-code-line"></i>QR CODE GENERATOR</h1>
-                <input type="text" placeholder="Enter URL Here.." 
-                        value={Text}
-                        autoFocus
-                        onChange={(e)=>{setText(e.target.value.trim())}}
-                />
-                <small><i className="ri-qr-code-fill"></i>Your QR Code Will Generated Automatically.</small>
-                
-                
-                <small>@By Nnatvron</small>
+const {
+  selectedType,
+  setSelectedType,
+
+  text,
+  setText,
+
+  ssid,
+  setSsid,
+
+  password,
+  setPassword,
+
+  security,
+  setSecurity,
+
+  foreground,
+  setForeground,
+
+  background,
+  setBackground,
+
+  size,
+  setSize,
+
+  margin,
+  setMargin,
+
+  errorLevel,
+  setErrorLevel,
+
+  qrData,
+  svgData,
+
+} = useQRCode();
+
+  return (
+
+    <section className={QrCSS.container}>
+
+      <div className={QrCSS.blurOne}></div>
+      <div className={QrCSS.blurTwo}></div>
+
+      <div className={QrCSS.wrapper}>
+
+        {/* NAVBAR */}
+
+        <nav className={QrCSS.navbar}>
+
+          <div className={QrCSS.logo}>
+
+            <QrCode size={22} />
+
+            <span>
+              QR Code Studio
+            </span>
+
+          </div>
+
+          <div className={QrCSS.navActions}>
+
+            <button>
+
+              <Sparkles size={17} />
+
+              Modern QR
+
+            </button>
+
+          </div>
+
+        </nav>
+
+        {/* HERO */}
+
+        <header className={QrCSS.header}>
+
+          <div className={QrCSS.badge}>
+
+            <Sparkles size={16} />
+
+            <span>
+              Modern QR Platform
+            </span>
+
+          </div>
+
+          <h1>
+
+            Create Beautiful{" "}
+
+            <span>
+              QR Codes
+            </span>
+
+          </h1>
+
+          <p>
+            Create professional QR Codes instantly.
+            Fast, simple and beautifully designed
+            for everyone.
+          </p>
+
+          <div className={QrCSS.stats}>
+
+            <div>
+
+              <h3>5+</h3>
+
+              <span>QR Types</span>
+
             </div>
 
+            <div>
 
-            <div className={QrCSS.qrImageWrapper}>
-                <h2>Your QR Code Here..</h2>
-            <div className={QrCSS.QrImage}>
-                {qrData && Text && <img src={qrData} alt="QR Code"/>}
+              <h3>PNG/SVG</h3>
+
+              <span>Export</span>
+
             </div>
-            <h3>{Text}</h3>
-            <a href={qrData} download='QR by Nnatvron.png'>
-                <i className='ri-download-line'></i>
-            </a>
+
+            <div>
+
+              <h3>Fast</h3>
+
+              <span>Generation</span>
+
             </div>
-            </div>
-        </>
-    )
+
+          </div>
+
+        </header>
+                {/* DASHBOARD */}
+
+        <div className={QrCSS.dashboard}>
+
+          <QRSidebar
+            selectedType={selectedType}
+            setSelectedType={setSelectedType}
+          />
+
+          <main className={QrCSS.content}>
+
+            <QRPreview
+              qrData={qrData}
+            />
+
+            <QRInput
+              selectedType={selectedType}
+
+              text={text}
+              setText={setText}
+
+              ssid={ssid}
+              setSsid={setSsid}
+
+              password={password}
+              setPassword={setPassword}
+
+              security={security}
+              setSecurity={setSecurity}
+            />
+
+<QRSettings
+  foreground={foreground}
+  setForeground={setForeground}
+
+  background={background}
+  setBackground={setBackground}
+
+  size={size}
+  setSize={setSize}
+
+  margin={margin}
+  setMargin={setMargin}
+
+  errorLevel={errorLevel}
+  setErrorLevel={setErrorLevel}
+
+  qrData={qrData}
+  svgData={svgData}
+/>
+
+          </main>
+
+        </div>
+                {/* FOOTER */}
+
+        <footer className={QrCSS.footer}>
+
+          <p>
+            © {new Date().getFullYear()} QR Code Studio.
+            Built with React & QRCode.js.
+          </p>
+
+        </footer>
+
+      </div>
+
+    </section>
+
+  );
+
 }
 
-export default Qrgenerator
+export default QRGenerator;
