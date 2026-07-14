@@ -7,8 +7,7 @@ import {
 import WifiForm from "./WifiForm";
 import WhatsappForm from "./WhatsappForm";
 import InstagramForm from "./InstagramForm";
-import PdfForm from "./PdfForm";
-
+import PdfForm from "./PDFForm";
 import QrCSS from "./Qrgenerator.module.css";
 
 function QRInput({
