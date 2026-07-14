@@ -5,35 +5,41 @@ import QrCSS from "./Qrgenerator.module.css";
 function QRSidebar({ selectedType, setSelectedType }) {
   return (
     <aside className={QrCSS.sidebar}>
+
       <h3>QR Types</h3>
 
       <div className={QrCSS.sidebarList}>
-        {qrTypes.map((item) => {
-          const Icon = item.icon;
 
-          return (
-            <button
-              key={item.id}
-              type="button"
-              onClick={() => setSelectedType(item.id)}
-              className={`${QrCSS.sidebarButton} ${
-                selectedType === item.id ? QrCSS.active : ""
-              }`}
-            >
-              <div className={QrCSS.sidebarIcon}>
-                <Icon size={18} />
-              </div>
+        {qrTypes.map(({ id, title, description, icon: Icon }) => (
 
-              <div className={QrCSS.sidebarText}>
-                <strong>{item.title}</strong>
-                <span>{item.description}</span>
-              </div>
+          <button
+            key={id}
+            type="button"
+            onClick={() => setSelectedType(id)}
+            className={`${QrCSS.sidebarButton} ${
+              selectedType === id ? QrCSS.active : ""
+            }`}
+          >
 
-              {selectedType === item.id && <ArrowRight size={16} />}
-            </button>
-          );
-        })}
+            <div className={QrCSS.sidebarIcon}>
+              <Icon size={18} />
+            </div>
+
+            <div className={QrCSS.sidebarText}>
+              <strong>{title}</strong>
+              <span>{description}</span>
+            </div>
+
+            {selectedType === id && (
+              <ArrowRight size={16} />
+            )}
+
+          </button>
+
+        ))}
+
       </div>
+
     </aside>
   );
 }

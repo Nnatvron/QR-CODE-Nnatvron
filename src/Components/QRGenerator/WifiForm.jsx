@@ -118,14 +118,15 @@ function WifiForm({
 
           <ShieldCheck size={18} />
 
-          <select
-            value={security}
-            onChange={(e) => setSecurity(e.target.value)}
-          >
-            <option value="WPA">WPA / WPA2</option>
-            <option value="WEP">WEP</option>
-            <option value="nopass">No Password</option>
-          </select>
+<select
+  value={security}
+  onChange={(e)=>setSecurity(e.target.value)}
+  className={QrCSS.selectModern}
+>
+  <option value="WPA">WPA/WPA2</option>
+  <option value="WEP">WEP</option>
+  <option value="nopass">Open Network</option>
+</select>
 
         </div>
 

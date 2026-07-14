@@ -26,6 +26,7 @@ function useQRCode() {
   // WHATSAPP
   // =========================
 
+  const [countryCode, setCountryCode] = useState("62");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
 
@@ -66,26 +67,60 @@ function useQRCode() {
         let value = "";
 
         switch (selectedType) {
+          // =========================
+          // WEBSITE
+          // =========================
+
           case "website":
-            value = text.trim();
+            value = text.trim() ? text.trim() : "";
             break;
+
+          // =========================
+          // WIFI
+          // =========================
 
           case "wifi":
-            value = `WIFI:T:${security};S:${ssid};P:${password};;`;
+            value =
+              ssid.trim() && password.trim()
+                ? `WIFI:T:${security};S:${ssid};P:${password};;`
+                : "";
             break;
+
+          // =========================
+          // WHATSAPP
+          // =========================
 
           case "whatsapp":
-            value = `https://wa.me/${phone}?text=${encodeURIComponent(
-              message
-            )}`;
+            if (!phone.trim()) {
+              value = "";
+              break;
+            }
+
+            value = `https://wa.me/${countryCode}${phone.replace(
+              /\D/g,
+              ""
+            )}?text=${encodeURIComponent(message)}`;
+
             break;
+
+          // =========================
+          // INSTAGRAM
+          // =========================
 
           case "instagram":
-            value = `https://instagram.com/${username}`;
+            value = username.trim()
+              ? `https://instagram.com/${username
+                  .replace("@", "")
+                  .trim()}`
+              : "";
             break;
 
+          // =========================
+          // PDF
+          // =========================
+
           case "pdf":
-            value = pdfUrl.trim();
+            value = pdfUrl.trim() ? pdfUrl.trim() : "";
             break;
 
           default:
@@ -108,10 +143,8 @@ function useQRCode() {
           },
         };
 
-        // PNG
         const png = await QRCode.toDataURL(value, options);
 
-        // SVG
         const svg = await QRCode.toString(value, {
           ...options,
           type: "svg",
@@ -129,14 +162,27 @@ function useQRCode() {
     generateQRCode();
   }, [
     selectedType,
+
+    // Website
     text,
+
+    // WiFi
     ssid,
     password,
     security,
+
+    // WhatsApp
+    countryCode,
     phone,
     message,
+
+    // Instagram
     username,
+
+    // PDF
     pdfUrl,
+
+    // Settings
     foreground,
     background,
     size,
@@ -145,37 +191,64 @@ function useQRCode() {
   ]);
 
   return {
-    // Sidebar
+    // =========================
+    // TYPE
+    // =========================
+
     selectedType,
     setSelectedType,
 
-    // Website
+    // =========================
+    // WEBSITE
+    // =========================
+
     text,
     setText,
 
-    // WiFi
+    // =========================
+    // WIFI
+    // =========================
+
     ssid,
     setSsid,
+
     password,
     setPassword,
+
     security,
     setSecurity,
 
-    // WhatsApp
+    // =========================
+    // WHATSAPP
+    // =========================
+
+    countryCode,
+    setCountryCode,
+
     phone,
     setPhone,
+
     message,
     setMessage,
 
-    // Instagram
+    // =========================
+    // INSTAGRAM
+    // =========================
+
     username,
     setUsername,
 
+    // =========================
     // PDF
+    // =========================
+
     pdfUrl,
     setPdfUrl,
 
-    // Settings
+    // =========================
+    // SETTINGS
+    // =========================
+
     foreground,
     setForeground,
 
@@ -191,7 +264,10 @@ function useQRCode() {
     errorLevel,
     setErrorLevel,
 
-    // Result
+    // =========================
+    // RESULT
+    // =========================
+
     qrData,
     svgData,
   };

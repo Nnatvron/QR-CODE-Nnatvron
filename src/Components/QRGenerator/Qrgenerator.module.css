@@ -1216,3 +1216,154 @@
     color:#fff;
     transform:scale(1.1);
 }
+.inputGroup select{
+  width:100%;
+  border:none;
+  outline:none;
+  background:transparent;
+  color:#fff;
+  font-size:.95rem;
+  font-weight:500;
+  appearance:none;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  cursor:pointer;
+}
+
+.inputGroup select option{
+  background:#0f172a;
+  color:#fff;
+}
+.inputGroup{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  width: 100%;
+
+  padding: 12px 16px;
+
+  border: 1px solid rgba(255,255,255,.08);
+
+  border-radius: 14px;
+
+  background: rgba(255,255,255,.05);
+
+}
+
+.inputGroup select{
+  padding-right:40px;
+}
+.textarea{
+  width:100%;
+  min-height:120px;
+  resize:vertical;
+
+  background:transparent;
+  border:none;
+  outline:none;
+
+  color:#fff;
+  font-size:.95rem;
+  font-family:inherit;
+}
+
+.textarea::placeholder{
+  color:rgba(255,255,255,.45);
+}
+.inputGroup textarea{
+  flex: 1;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #fff;
+  font-size: 15px;
+  font-family: inherit;
+  resize: vertical;
+  padding: 14px 16px;
+  min-height: 120px;
+  line-height: 1.5;
+}
+.inputGroup textarea::placeholder{
+  color: rgba(255,255,255,.45);
+}
+.selectModern{
+  width:100%;
+  background:transparent;
+  border:none;
+  outline:none;
+
+  color:#fff;
+  font-size:.95rem;
+  font-weight:500;
+
+  appearance:none;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+}
+
+.selectModern option{
+  background:#111827;
+  color:#fff;
+}
+.inputGroup input,
+.inputGroup textarea,
+.inputGroup select{
+  flex:1;
+  background:transparent;
+  border:none;
+  outline:none;
+  color:#fff;
+  font-size:.95rem;
+}
+
+.inputGroup input::placeholder,
+.inputGroup textarea::placeholder{
+  color:rgba(255,255,255,.45);
+}
+.textareaGroup{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+
+  padding:14px 16px;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  border-radius:16px;
+
+  background:rgba(255,255,255,.05);
+
+  transition:.25s;
+}
+
+.textareaGroup:focus-within{
+  border-color:#7c5cff;
+  box-shadow:0 0 0 3px rgba(124,92,255,.15);
+}
+
+.textareaGroup svg{
+  margin-top:4px;
+  color:#9ca3af;
+}
+
+.textareaGroup textarea{
+  flex:1;
+  width:100%;
+  min-height:120px;
+
+  background:transparent;
+  border:none;
+  outline:none;
+
+  resize:vertical;
+
+  color:#fff;
+  font-size:15px;
+  font-family:inherit;
+}
+
+.textareaGroup textarea::placeholder{
+  color:rgba(255,255,255,.45);
+}

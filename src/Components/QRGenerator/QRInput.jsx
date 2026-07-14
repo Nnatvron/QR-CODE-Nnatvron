@@ -5,9 +5,14 @@ import {
 } from "lucide-react";
 
 import WifiForm from "./WifiForm";
+import WhatsappForm from "./WhatsappForm";
+import InstagramForm from "./InstagramForm";
+import PdfForm from "./PdfForm";
+
 import QrCSS from "./Qrgenerator.module.css";
 
 function QRInput({
+
   selectedType,
 
   // Website
@@ -23,32 +28,106 @@ function QRInput({
 
   security,
   setSecurity,
+
+  // WhatsApp
+  countryCode,
+  setCountryCode,
+
+  phone,
+  setPhone,
+
+  message,
+  setMessage,
+
+  // Instagram
+  username,
+  setUsername,
+
+  // PDF
+  pdfUrl,
+  setPdfUrl,
+
 }) {
 
   switch (selectedType) {
+
+    // =========================
+    // WIFI
+    // =========================
 
     case "wifi":
       return (
         <WifiForm
           ssid={ssid}
           setSsid={setSsid}
+
           password={password}
           setPassword={setPassword}
+
           security={security}
           setSecurity={setSecurity}
         />
       );
 
+    // =========================
+    // WHATSAPP
+    // =========================
+
+    case "whatsapp":
+      return (
+        <WhatsappForm
+          countryCode={countryCode}
+          setCountryCode={setCountryCode}
+
+          phone={phone}
+          setPhone={setPhone}
+
+          message={message}
+          setMessage={setMessage}
+        />
+      );
+
+    // =========================
+    // INSTAGRAM
+    // =========================
+
+    case "instagram":
+      return (
+        <InstagramForm
+          username={username}
+          setUsername={setUsername}
+        />
+      );
+
+    // =========================
+    // PDF
+    // =========================
+
+    case "pdf":
+      return (
+        <PdfForm
+          pdfUrl={pdfUrl}
+          setPdfUrl={setPdfUrl}
+        />
+      );
+
+    // =========================
+    // WEBSITE
+    // =========================
+
     case "website":
     default:
       return (
+
         <div className={QrCSS.inputCard}>
 
           <div className={QrCSS.inputHeader}>
 
             <div>
 
-              <h2>Website URL</h2>
+              <h2>
+                Website URL
+              </h2>
 
               <span>
                 Paste your website link below
@@ -120,7 +199,9 @@ function QRInput({
 
             <div>
 
-              <h4>More QR Types Available</h4>
+              <h4>
+                More QR Types Available
+              </h4>
 
               <p>
                 Switch from the sidebar to create WiFi,
@@ -132,6 +213,7 @@ function QRInput({
           </div>
 
         </div>
+
       );
 
   }

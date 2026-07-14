@@ -12,45 +12,66 @@ import useQRCode from "./hooks/useQRCode";
 import QrCSS from "./Qrgenerator.module.css";
 
 function QRGenerator() {
+  const {
+    // TYPE
+    selectedType,
+    setSelectedType,
 
-const {
-  selectedType,
-  setSelectedType,
+    // WEBSITE
+    text,
+    setText,
 
-  text,
-  setText,
+    // WIFI
+    ssid,
+    setSsid,
 
-  ssid,
-  setSsid,
+    password,
+    setPassword,
 
-  password,
-  setPassword,
+    security,
+    setSecurity,
 
-  security,
-  setSecurity,
+    // WHATSAPP
+    countryCode,
+    setCountryCode,
 
-  foreground,
-  setForeground,
+    phone,
+    setPhone,
 
-  background,
-  setBackground,
+    message,
+    setMessage,
 
-  size,
-  setSize,
+    // INSTAGRAM
+    username,
+    setUsername,
 
-  margin,
-  setMargin,
+    // PDF
+    pdfUrl,
+    setPdfUrl,
 
-  errorLevel,
-  setErrorLevel,
+    // SETTINGS
+    foreground,
+    setForeground,
 
-  qrData,
-  svgData,
+    background,
+    setBackground,
 
-} = useQRCode();
+    size,
+    setSize,
+
+    margin,
+    setMargin,
+
+    errorLevel,
+    setErrorLevel,
+
+    // RESULT
+    qrData,
+    svgData,
+
+  } = useQRCode();
 
   return (
-
     <section className={QrCSS.container}>
 
       <div className={QrCSS.blurOne}></div>
@@ -63,25 +84,15 @@ const {
         <nav className={QrCSS.navbar}>
 
           <div className={QrCSS.logo}>
-
             <QrCode size={22} />
-
-            <span>
-              QR Code Studio
-            </span>
-
+            <span>QR Code Studio</span>
           </div>
 
           <div className={QrCSS.navActions}>
-
             <button>
-
               <Sparkles size={17} />
-
               Modern QR
-
             </button>
-
           </div>
 
         </nav>
@@ -91,23 +102,12 @@ const {
         <header className={QrCSS.header}>
 
           <div className={QrCSS.badge}>
-
             <Sparkles size={16} />
-
-            <span>
-              Modern QR Platform
-            </span>
-
+            <span>Modern QR Platform</span>
           </div>
 
           <h1>
-
-            Create Beautiful{" "}
-
-            <span>
-              QR Codes
-            </span>
-
+            Create Beautiful <span>QR Codes</span>
           </h1>
 
           <p>
@@ -119,33 +119,25 @@ const {
           <div className={QrCSS.stats}>
 
             <div>
-
               <h3>5+</h3>
-
               <span>QR Types</span>
-
             </div>
 
             <div>
-
-              <h3>PNG/SVG</h3>
-
+              <h3>PNG / SVG</h3>
               <span>Export</span>
-
             </div>
 
             <div>
-
               <h3>Fast</h3>
-
               <span>Generation</span>
-
             </div>
 
           </div>
 
         </header>
-                {/* DASHBOARD */}
+
+        {/* DASHBOARD */}
 
         <div className={QrCSS.dashboard}>
 
@@ -160,62 +152,65 @@ const {
               qrData={qrData}
             />
 
-            <QRInput
-              selectedType={selectedType}
-
-              text={text}
-              setText={setText}
-
-              ssid={ssid}
-              setSsid={setSsid}
-
-              password={password}
-              setPassword={setPassword}
-
-              security={security}
-              setSecurity={setSecurity}
-            />
-
-<QRSettings
-  foreground={foreground}
-  setForeground={setForeground}
-
-  background={background}
-  setBackground={setBackground}
-
-  size={size}
-  setSize={setSize}
-
-  margin={margin}
-  setMargin={setMargin}
-
-  errorLevel={errorLevel}
-  setErrorLevel={setErrorLevel}
-
-  qrData={qrData}
-  svgData={svgData}
+<QRInput
+  selectedType={selectedType}
+  text={text}
+  setText={setText}
+  ssid={ssid}
+  setSsid={setSsid}
+  password={password}
+  setPassword={setPassword}
+  security={security}
+  setSecurity={setSecurity}
+  countryCode={countryCode}
+  setCountryCode={setCountryCode}
+  phone={phone}
+  setPhone={setPhone}
+  message={message}
+  setMessage={setMessage}
+  username={username}
+  setUsername={setUsername}
+  pdfUrl={pdfUrl}
+  setPdfUrl={setPdfUrl}
 />
+
+            <QRSettings
+              foreground={foreground}
+              setForeground={setForeground}
+
+              background={background}
+              setBackground={setBackground}
+
+              size={size}
+              setSize={setSize}
+
+              margin={margin}
+              setMargin={setMargin}
+
+              errorLevel={errorLevel}
+              setErrorLevel={setErrorLevel}
+
+              qrData={qrData}
+              svgData={svgData}
+            />
 
           </main>
 
         </div>
-                {/* FOOTER */}
+
+        {/* FOOTER */}
 
         <footer className={QrCSS.footer}>
-
           <p>
             © {new Date().getFullYear()} QR Code Studio.
             Built with React & QRCode.js.
           </p>
-
         </footer>
 
       </div>
 
     </section>
-
   );
-
 }
 
 export default QRGenerator;
